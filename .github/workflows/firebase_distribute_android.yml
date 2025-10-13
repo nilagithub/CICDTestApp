@@ -24,13 +24,14 @@ jobs:
       - name: Make build script executable
         run: |
             chmod +x .github/scripts/build-android.sh
+            chmod +x .github/scripts/package-app-android.sh
             chmod +x .github/scripts/upload-firebase-android.sh  
 
       - name: 🛠️ Build Android APK (Release)
         run: .github/scripts/build-android.sh
 
-      - name: 🔐 Install Firebase CLI
-        run: npm install -g firebase-tools   
+      - name: Package .app into .ipa
+        run: .github/scripts/package-app-ios.sh    
 
       - name: 📤 Upload Android APK to Firebase
         run: .github/scripts/upload-firebase-android.sh
