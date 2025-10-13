@@ -1,0 +1,52 @@
+name: Build & Distribute to Firebase
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: ${{ github.ref_name }}
+    runs-on: macos-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🟢 Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 📦 Install npm dependencies
+        run: npm install
+
+      - name: 📥 Install CocoaPods
+        run: |
+          cd ios
+          pod install
+          cd ..
+
+      - name: Make scripts executable
+        run: |
+          chmod +x .github/scripts/build_ios.sh
+          chmod +x .github/scripts/package_app_ios.sh
+          chmod +x .github/scripts/upload_firebase_ios.sh
+
+      - name: Run iOS build script
+        run: .github/scripts/build_ios.sh
+
+      - name: Package .app into .ipa
+        run: .github/scripts/package_app.sh
+
+      - name: Upload to Firebase (Optional)
+        env:
+          IOS_APP_ID: ${{ secrets.IOS_APP_ID }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: .github/scripts/upload_firebase.sh
+
+      # - name: 📁 Upload build artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: iOS Simulator App
+      #     path: CICDTestApp.app.zip      
