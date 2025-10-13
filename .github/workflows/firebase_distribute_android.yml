@@ -31,7 +31,7 @@ jobs:
         run: .github/scripts/build-android.sh
 
       - name: Package .app into .ipa
-        run: .github/scripts/package-app-ios.sh    
+        run: .github/scripts/package-app-androi.sh    
 
       - name: 📤 Upload Android APK to Firebase
         run: .github/scripts/upload-firebase-android.sh
