@@ -7,4 +7,5 @@ firebase appdistribution:distribute app-release.apk \
   --app "$ANDROID_APP_ID" \
   --token "$FIREBASE_TOKEN" \
   --release-notes "Automated build from GitHub Actions" \
+  --groups testers
 echo "✅ Upload complete."
