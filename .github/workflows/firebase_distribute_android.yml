@@ -30,8 +30,8 @@ jobs:
       - name: 🛠️ Build Android APK (Release)
         run: .github/scripts/build-android.sh
 
-      - name: Package .app into .ipa
-        run: .github/scripts/package-app-androi.sh    
+      - name: Package .apk
+        run: .github/scripts/package-app-android.sh    
 
       - name: 📤 Upload Android APK to Firebase
         run: .github/scripts/upload-firebase-android.sh

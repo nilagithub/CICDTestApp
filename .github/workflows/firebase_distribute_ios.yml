@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
 
+env:
+  SKIP_IOS_UPLOAD: true  # <-- set to true to skip iOS upload, false or unset to run it
+
+
 jobs:
   build:
     name: ${{ github.ref_name }}
@@ -40,6 +44,7 @@ jobs:
         run: .github/scripts/package-app-ios.sh
 
       - name: Upload to Firebase (Optional)
+        if: env.SKIP_IOS_UPLOAD != 'true'   # will run only if SKIP_IOS_UPLOAD is NOT true
         env:
           IOS_APP_ID: ${{ secrets.IOS_APP_ID }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
