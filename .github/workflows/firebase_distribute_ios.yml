@@ -44,11 +44,12 @@ jobs:
         run: .github/scripts/package-app-ios.sh
       
       - name: Upload IPA as an artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: CICDTestApp.ipa
           #path: ${{ github.workspace }}/CICDTestApp.ipa # Path to the file in the workspace
-          path: $GITHUB_WORKSPACE/CICDTestApp.ipa # Path to the file in the workspace
+          #path: $GITHUB_WORKSPACE/CICDTestApp.ipa # Path to the file in the workspace
+          path: CICDTestApp.ipa # Path to the file in the workspace
 
       - name: Upload to Firebase (Optional)
         if: env.SKIP_IOS_UPLOAD != 'true'   # will run only if SKIP_IOS_UPLOAD is NOT true
