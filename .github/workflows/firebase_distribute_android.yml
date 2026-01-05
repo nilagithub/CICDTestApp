@@ -2,7 +2,7 @@ name: Build & Distribute to Firebase
 
 on:
   push:
-    branches: [main]
+    branches: [dev123]
 
 jobs:
   build:

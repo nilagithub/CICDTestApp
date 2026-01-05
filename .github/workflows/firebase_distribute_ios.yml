@@ -2,7 +2,7 @@ name: Build & Distribute to Firebase
 
 on:
   push:
-    branches: [main]
+    branches: [dev]
 
 env:
   SKIP_IOS_UPLOAD: true  # <-- set to true to skip iOS upload, false or unset to run it
