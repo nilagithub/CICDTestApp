@@ -44,7 +44,7 @@ jobs:
         run: .github/scripts/package-app-ios.sh
       
       - name: Upload IPA as an artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: CICDTestApp.ipa
           #path: ${{ github.workspace }}/CICDTestApp.ipa # Path to the file in the workspace
